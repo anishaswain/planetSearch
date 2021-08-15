@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useSelector, useDispatch} from 'react-redux'
 import "./SearchInput.css"
 import { Row, Col, Input } from 'antd';
 
