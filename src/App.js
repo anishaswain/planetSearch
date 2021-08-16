@@ -1,10 +1,34 @@
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Card } from 'antd';
 import SearchInput from './components/SearchInput/SearchInput';
 import SideFilterBar from './components/SideFilterBar/SideFilterBar';
 import SearchResult from './components/SearchResult/SearchResult';
+import { getFullDataAction, getColors, getShapes, getSizes } from './actions/getDataAction';
+import { loadingAction } from './actions/loadingAction';
+import { fetchFullData, fetchColors, fetchShapes, fetchSizes } from './services/fetchData';
+import { createUrl } from './utils/createUrl';
 
 function App() {
+
+  const dispatch = useDispatch();
+ 
+  useEffect(() => {
+    const loadData = async () => {
+        const data = await fetchFullData(createUrl());
+        await dispatch(getFullDataAction(data));
+        const colors = await fetchColors("colors");
+        await dispatch(getColors(colors));
+        const shapes = await fetchShapes("shapes");
+        await dispatch(getShapes(shapes));
+        const sizes = await fetchSizes("sizes");
+        await dispatch(getSizes(sizes));
+        await dispatch(loadingAction())
+    };
+    loadData();
+  }, [dispatch]);
+
   return (
     <div className="App">
       <header className="App-header"></header>
