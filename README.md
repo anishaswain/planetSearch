@@ -61,8 +61,9 @@ Both the production and development builds of the dashboard require API endpoint
 `src/config/endpoint.js` contains references to API required to visualize data. Please reference the following example for required configuration fields:
 
 ```JavaScript
+const PORTNUMBER = PORTNUMBER // add your portnumber here
 export const endpoints = {
-  url: "http://localhost:PORTNUMBER",
+  url: `http://localhost:${PORTNUMBER}`,
 };
 ```
 
