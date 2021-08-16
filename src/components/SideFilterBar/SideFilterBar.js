@@ -1,42 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import PropTypes from 'prop-types';
 import { Typography, Checkbox, Spin } from 'antd';
 import './SideFilterBar.css'
 import { fetchFullData } from '../../services/fetchData';
 import { getFullDataAction } from '../../actions/getDataAction';
+import { setColorFilter, setShapeFilter, setSizeFilter } from '../../actions/setFilters';
 import { createUrl } from '../../utils/createUrl';
+import PropTypes from 'prop-types';
 
 const { Title } = Typography;
 
 const SideFilterBar = () => {
     const dispatch = useDispatch();
     
-    const colors = useSelector(state => state.colors)
-    const shapes = useSelector(state => state.shapes)
-    const sizes = useSelector(state => state.sizes)
-    const isLoading = useSelector(state => state.isLoading)
+    const colors = useSelector(state => state.data.colors)
+    const shapes = useSelector(state => state.data.shapes)
+    const sizes = useSelector(state => state.data.sizes)
+    const isLoading = useSelector(state => state.data.isLoading)
+    const filters = useSelector(state => state.filters)
 
     const [colorFilters, setColorFilters] = useState([])
     const [shapeFilters, setShapeFilters] = useState([])
     const [sizeFilters, setSizeFilters] = useState([])
 
-    const handleFilterChange = (type, setState, data) => {
+    const handleFilterChange = (setState, data) => {
         setState(prev => {
             return prev.includes(data) ? prev.filter(res => res !== data) : [...prev, data]
         })
     }
 
     useEffect(() => {
+        dispatch(setColorFilter(colorFilters));
+    }, [colorFilters]);
+
+    useEffect(() => {
+        dispatch(setShapeFilter(shapeFilters));
+
+    }, [shapeFilters]);
+
+    useEffect(() => {
+        dispatch(setSizeFilter(sizeFilters));
+    }, [sizeFilters]);
+
+    useEffect(() => {
         const loadData = async () => {
-            const filters = {colorFilter:colorFilters, sizeFilter:sizeFilters, shapeFilter:shapeFilters} 
             const data = await fetchFullData(createUrl(filters));
             await dispatch(getFullDataAction(data));
         };
         loadData();
-      }, [colorFilters,shapeFilters,sizeFilters]);
-
-    console.log(isLoading,colors)
+      }, [filters]);
+    
     return (
         <React.Fragment>
             {
@@ -46,7 +59,7 @@ const SideFilterBar = () => {
                             <Title level={5}>Color</Title>
                             {
                                 colors.map(item => (
-                                    <Checkbox onChange={() => handleFilterChange("color", setColorFilters, item.id)} key={item.id}>{item.name}</Checkbox>
+                                    <Checkbox onChange={() => handleFilterChange(setColorFilters, item.id)} key={item.id}>{item.name}</Checkbox>
                                 ))
                             }
                         </div>
@@ -54,7 +67,7 @@ const SideFilterBar = () => {
                             <Title level={5}>Shape</Title>
                             {
                                 shapes.map(item => (
-                                    <Checkbox onChange={() => handleFilterChange("shape", setShapeFilters, item.id)} key={item.id}>{item.name}</Checkbox>
+                                    <Checkbox onChange={() => handleFilterChange(setShapeFilters, item.id)} key={item.id}>{item.name}</Checkbox>
                                 ))
                             }
                         </div>
@@ -62,7 +75,7 @@ const SideFilterBar = () => {
                             <Title level={5}>Size</Title>
                             {
                                 sizes.map(item => (
-                                    <Checkbox onChange={() => handleFilterChange("size", setSizeFilters, item.id)} key={item.id}>{item.name}</Checkbox>
+                                    <Checkbox onChange={() => handleFilterChange(setSizeFilters, item.id)} key={item.id}>{item.name}</Checkbox>
                                 ))
                             }
                         </div>

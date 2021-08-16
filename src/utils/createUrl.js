@@ -1,34 +1,34 @@
 import { updateUrl } from "./updateUrl"
 
-export const createUrl = (filters) => {
+export const createUrl = (payload) => {
     const mainRoute = "planets"
-    let params = "?"
-    if (filters) {
-        const { colorFilter, sizeFilter, shapeFilter } = filters
-        if (colorFilter) {
+    const queryParam = window.location.search.slice(1)
+    let params = ""
+    let final = ""
 
-            colorFilter.map(id => {
-                params += `&color=${id}`
-            })
-        }
-        if (sizeFilter) {
-            sizeFilter.map(id => {
-                params += `&size=${id}`
-            })
-        }
-        if (shapeFilter) {
-            shapeFilter.map(id => {
-                params += `&shape=${id}`
-            })
-        }
+    const { colorFilter, sizeFilter, shapeFilter, searchFilter } = payload
+    if (colorFilter) {
+
+        colorFilter.map(id => {
+            params += `&color=${id}`
+        })
+    }
+    if (sizeFilter) {
+        sizeFilter.map(id => {
+            params += `&size=${id}`
+        })
+    }
+    if (shapeFilter) {
+        shapeFilter.map(id => {
+            params += `&shape=${id}`
+        })
+    }
+    if(searchFilter) {
+        params += `&q=${searchFilter}`
     }
 
-    console.log(window.location.search)
-    updateUrl(params.length > 1 ? mainRoute + params : mainRoute + window.location.search)
-    let final = window.location.search ? mainRoute + window.location.search : mainRoute + params
-
-    // const queryParam = window.location.search
-    // console.log(queryParam)
+    final = queryParam && params === "" ? mainRoute + "?" + queryParam : mainRoute + "?" + params
+    updateUrl(final)
 
     return final
 }

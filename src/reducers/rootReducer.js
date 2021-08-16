@@ -1,26 +1,10 @@
-const initState = {
-    data: [],
-    colors:[],
-    sizes:[],
-    shapes:[],
-    isLoading:true
-}
+import { combineReducers } from "redux";
+import dataReducer from "./dataReducer";
+import filterReducer from "./filterReducer";
 
-const rootReducer = (state = initState, action) => {
-    switch (action.type) {
-        case "FETCH_FULL_DATA":
-            return { ...state, data: action.payload}
-        case "FETCH_COLORS":
-            return { ...state, colors: action.payload}
-        case "FETCH_SHAPES":
-            return { ...state, shapes: action.payload}
-        case "FETCH_SIZES":
-            return { ...state, sizes: action.payload}
-        case "LOADING_SUCCESS":
-            return { ...state, isLoading: false}
-        default:
-            return state
-    }
-}
+const rootReducer = combineReducers({
+    data: dataReducer,
+    filters: filterReducer,
+})
 
 export default rootReducer

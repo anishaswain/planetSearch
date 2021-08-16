@@ -16,7 +16,7 @@ function App() {
  
   useEffect(() => {
     const loadData = async () => {
-        const data = await fetchFullData(createUrl());
+        const data = await fetchFullData(createUrl({}));
         await dispatch(getFullDataAction(data));
         const colors = await fetchColors("colors");
         await dispatch(getColors(colors));

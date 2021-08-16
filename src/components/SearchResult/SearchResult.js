@@ -7,11 +7,11 @@ import { Card, Typography, Space, Spin } from 'antd';
 const { Text } = Typography;
 
 const SearchResult = () => {
-    const data = useSelector(state => state.data)
-    const colors = useSelector(state => state.colors)
-    const shapes = useSelector(state => state.shapes)
-    const sizes = useSelector(state => state.sizes)
-    const isLoading = useSelector(state => state.isLoading)
+    const data = useSelector(state => state.data.data)
+    const colors = useSelector(state => state.data.colors)
+    const shapes = useSelector(state => state.data.shapes)
+    const sizes = useSelector(state => state.data.sizes)
+    const isLoading = useSelector(state => state.data.isLoading)
 
     return (
         <React.Fragment>
