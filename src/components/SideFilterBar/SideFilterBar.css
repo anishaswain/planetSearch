@@ -1,12 +1,12 @@
-@import 'antd/dist/antd.css';
+@import "antd/dist/antd.css";
 
 @media screen and (max-width: 400px) {
-    .filterCard{
-        display: flex;
-        flex-wrap: wrap;
-    }
+  .filterCard {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
-.filterCard{
-    margin-top: 25px;
-  }
+.filterCard {
+  margin-top: 25px;
+}

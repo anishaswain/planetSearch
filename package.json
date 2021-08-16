@@ -22,8 +22,8 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
-  "lint-staged":{
-    "src/**/*.{js,jsx,json,css}" : [
+  "lint-staged": {
+    "**/*.{js,jsx,json,css}": [
       "prettier --write",
       "git add"
     ]

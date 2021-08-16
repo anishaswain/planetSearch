@@ -1,6 +1,6 @@
-@import 'antd/dist/antd.css';
+@import "antd/dist/antd.css";
 
-.resultCard{
-    border: hidden;
-    border-bottom: 1px solid #f0f0f0;
+.resultCard {
+  border: hidden;
+  border-bottom: 1px solid #f0f0f0;
 }
