@@ -1,6 +1,6 @@
+import React, { useEffect } from 'react';
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Row, Col, Card } from 'antd';
 import SearchInput from './components/SearchInput/SearchInput';
 import SideFilterBar from './components/SideFilterBar/SideFilterBar';

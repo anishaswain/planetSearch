@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react';
 import "./SearchInput.css"
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Input } from 'antd';
 import { fetchFullData } from '../../services/fetchData';
 import { getFullDataAction } from '../../actions/getDataAction';
 import { createUrl } from '../../utils/createUrl';
 import { setSearchFilter } from '../../actions/setFilters';
-import PropTypes from 'prop-types';
 
 const { Search } = Input;
 
@@ -24,7 +23,7 @@ const SearchInput = () => {
       await dispatch(getFullDataAction(data));
     };
     loadData();
-  }, [filters]);
+  }, [dispatch,filters]);
 
   return (
     <React.Fragment>
@@ -42,7 +41,5 @@ const SearchInput = () => {
     </React.Fragment>
   );
 };
-
-SearchInput.propTypes = {};
 
 export default SearchInput;

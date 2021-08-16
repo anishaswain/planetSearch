@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import './SideFilterBar.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { Typography, Checkbox, Spin } from 'antd';
-import './SideFilterBar.css'
 import { fetchFullData } from '../../services/fetchData';
 import { getFullDataAction } from '../../actions/getDataAction';
 import { setColorFilter, setShapeFilter, setSizeFilter } from '../../actions/setFilters';
 import { createUrl } from '../../utils/createUrl';
-import PropTypes from 'prop-types';
 
 const { Title } = Typography;
 
@@ -31,16 +30,16 @@ const SideFilterBar = () => {
 
     useEffect(() => {
         dispatch(setColorFilter(colorFilters));
-    }, [colorFilters]);
+    }, [dispatch,colorFilters]);
 
     useEffect(() => {
         dispatch(setShapeFilter(shapeFilters));
 
-    }, [shapeFilters]);
+    }, [dispatch,shapeFilters]);
 
     useEffect(() => {
         dispatch(setSizeFilter(sizeFilters));
-    }, [sizeFilters]);
+    }, [dispatch,sizeFilters]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -48,7 +47,7 @@ const SideFilterBar = () => {
             await dispatch(getFullDataAction(data));
         };
         loadData();
-      }, [filters]);
+      }, [dispatch,filters]);
     
     return (
         <React.Fragment>
@@ -85,7 +84,5 @@ const SideFilterBar = () => {
         </React.Fragment>
     );
 };
-
-SideFilterBar.propTypes = {};
 
 export default SideFilterBar;

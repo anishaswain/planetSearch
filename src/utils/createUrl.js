@@ -11,16 +11,19 @@ export const createUrl = (payload) => {
 
         colorFilter.map(id => {
             params += `&color=${id}`
+            return params
         })
     }
     if (sizeFilter) {
         sizeFilter.map(id => {
             params += `&size=${id}`
+            return params
         })
     }
     if (shapeFilter) {
         shapeFilter.map(id => {
             params += `&shape=${id}`
+            return params
         })
     }
     if(searchFilter) {
