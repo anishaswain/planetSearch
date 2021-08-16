@@ -40,7 +40,7 @@ $ yarn install
 Start API Server
 
 ```bash
-$ json-server --watch data.json --port:PORTNUMBER
+$ json-server --watch ./mockAPI/data.json --port:PORTNUMBER
 ```
 
 Will start the `json-server` to fetch data from API.

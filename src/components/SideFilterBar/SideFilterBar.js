@@ -59,7 +59,7 @@ const SideFilterBar = () => {
       {isLoading ? (
         <Spin />
       ) : (
-        <>
+        <React.Fragment>
           <div className="filterCard">
             <Title level={5}>Color</Title>
             {colors.map((item) => (
@@ -93,7 +93,7 @@ const SideFilterBar = () => {
               </Checkbox>
             ))}
           </div>
-        </>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
