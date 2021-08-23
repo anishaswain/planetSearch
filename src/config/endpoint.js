@@ -1,4 +1,4 @@
-const PORTNUMBER = "xxxx"
+const api = 'https://my-json-server.typicode.com/anishaswain/EarthAPI';
 export const endpoints = {
-  url: `http://localhost:${PORTNUMBER}`,
+  url: api,
 };
