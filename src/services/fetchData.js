@@ -1,7 +1,6 @@
-import axios from "axios";
-import { endpoints } from "../config/endpoint";
+import axios from 'axios';
 
-const { url } = endpoints;
+const url = 'https://my-json-server.typicode.com/anishaswain/EarthAPI';
 
 export const fetchFullData = (type) => {
   return axios.get(`${url}/${type}`).then((res) => res.data);
@@ -17,8 +16,4 @@ export const fetchShapes = (type) => {
 
 export const fetchSizes = (type) => {
   return axios.get(`${url}/${type}`).then((res) => res.data);
-};
-
-export const fetchFilteredData = (type) => {
-  return ["abcd"];
 };
